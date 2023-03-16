@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import PixabayApi from './PixabayApi';
 
@@ -20,6 +21,7 @@ export class App extends Component  {
     isLoading: false,
     showModal: false,
     currentImageUrl: null,
+    currentImageDescription: null,
     showLoadMoreBtn: false,
   };
 
@@ -75,16 +77,17 @@ export class App extends Component  {
   this.setState({ query: query, page: 1, images: [] });
   };
   
-   toggleModal = (currentImageUrl) => {
+   toggleModal = (currentImageUrl, currentImageDescription) => {
    this.setState(({ showModal }) => ({
      showModal: !showModal,
      currentImageUrl: currentImageUrl,
+     currentImageDescription: currentImageDescription,
    }));
   };
 
   onNextFetch = () => {
   this.setState(({ page }) => ({ page: page + 1 }));
-
+  
 };
   
  getSearchRequest = query => {
@@ -99,7 +102,8 @@ export class App extends Component  {
       {showModal && (
         <Modal
           onClose={this.toggleModal}
-          src={this.currentImageUrl}
+          src={this.state.currentImageUrl}
+          alt={this.state.currentImageDescription}
         />
       )}
       <Searchbar onSubmit={this.getSearchRequest} />

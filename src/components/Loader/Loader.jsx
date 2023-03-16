@@ -8,7 +8,7 @@ function Loader() {
             <Dna
                 visible={true}
                 height="80"
-                width="200"
+                width="400"
             />
         </Load>
     );
