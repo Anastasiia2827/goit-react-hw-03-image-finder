@@ -95,7 +95,7 @@ export class App extends Component  {
     const { showModal } = this.state; 
   return (
     <Container>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       {showModal && (
         <Modal
           onClose={this.toggleModal}
